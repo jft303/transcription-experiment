@@ -1,0 +1,174 @@
+<div id="container-questionnaire">
+    <h1>Task Complete</h1>
+
+    <hr />
+
+    <p><b>You are finished! You will be eligible for full payment once you answer the following questions.</p>
+    <p>You will receive a <font color="red">$0.15</font> bonus for completing this survey</b></p>
+
+    <div class="instructions well">
+
+        <form id="postquiz" action="debrief" method="post">
+
+          <!--Age-Group-->
+          <div class="form-group">
+             <label for="exampleFormControlSelect1">What is your Age?</label>
+             <select id="age" name="age">
+               <option value="0" id="SELECTED" SELECTED >Please make a selection</option>
+               <option value="1">18-24 years old</option>
+               <option value="2">25-34 years old</option>
+               <option value="3">35-44 years old</option>
+               <option value="4">45-54 years old</option>
+               <option value="5">55-64 years old</option>
+               <option value="6">65-74 years old</option>
+               <option value="7">75 years or older</option>
+             </select>
+           </div>
+
+          <!--Gender -->
+          <div class="form-group">
+             <label for="exampleFormControlSelect1">What is your gender?</label>
+             <select id="gender" name="gender">
+               <option value="0" id="SELECTED" SELECTED >Please make a selection</option>
+               <option value="1">Female</option>
+               <option value="2">Male</option>
+               <option value="3">Other</option>
+             </select>
+           </div>
+
+           <!--Education-->
+           <div class="form-group">
+              <label for="exampleFormControlSelect1">What is your level of Education?</label>
+              <select id="education" name="education">
+                <option  value="0" id="SELECTED" SELECTED>Please make a selection</option>
+                <option value="1">Less than high school</option>
+                <option value="2">High school diploma or equivalent</option>
+                <option value="3">Some college, no degree</option>
+                <option value="4">Postsecondary non-degree award</option>
+                <option value="5">Associate’s degree</option>
+                <option value="6">Bachelor’s degree</option>
+                <option value="7">Master’s degree</option>
+                <option value="8">Doctoral or professional degree</option>
+              </select>
+            </div>
+
+            <!--Dutch -->
+            <div class="form-group">
+               <label for="exampleFormControlSelect1">Do you have <u>any</u> previous knowledge in Dutch (the language)?</label>
+               <select id="dutch" name="dutch">
+                 <option  value="0" id="SELECTED" SELECTED>Please make a selection</option>
+                 <option value="1">No</option>
+                 <option value="2">Yes</option>
+               </select>
+             </div>
+
+
+
+            <!-- beginning of a question -->
+            <div class="row question">
+                <div class="col-md-8">
+                  <b>On a scale of 1-5 (where 5 is the most fair), please rate how FAIR you found your *FIRST 2* bonus payments:</b>
+                </div>
+                <div class="col-md-4">
+                    <select id="fairness1" name="fairness">
+                      <option value="0" id="SELECTED" SELECTED>Please make a selection</option>
+                        <option value="5">5 - Very fair</option>
+                        <option value="4">4 - Moderately fair</option>
+                        <option value="3">3 - Neither nor</option>
+                        <option value="2">2 - Moderately unfair</option>
+                        <option value="1">1 - Very unfair</option>
+                    </select>
+                </div>
+            </div>
+            <!-- end of a question -->
+
+            <!-- beginning of a question -->
+            <div class="row question">
+                <div class="col-md-8">
+                  <b>On a scale of 1-5 (where 5 is the most fair), please rate how FAIR you found your *SECOND 2* bonus payments:</b>
+                </div>
+                <div class="col-md-4">
+                    <select id="fairness2" name="fairness">
+                      <option value="0" id="SELECTED" SELECTED >Please make a selection</option>
+                        <option value="5">5 - Very fair</option>
+                        <option value="4">4 - Moderately fair</option>
+                        <option value="3">3 - Neither nor</option>
+                        <option value="2">2 - Moderately unfair</option>
+                        <option value="1">1 - Very unfair</option>
+                    </select>
+                </div>
+            </div>
+            <!-- end of a question -->
+
+            <!--stated fair wage-->
+            <div class"form-group">
+                  <b>State a bonus payment (in $) you find fair for transcribing *one paragraph* (90 characters):</b>
+              <textarea  id="bonus" name="bonus" class="form-control"></textarea>
+              </div>
+
+
+            <!-- beginning of a question -->
+            <div class="row question">
+                <div class="col-md-8">
+                  <b>On a scale of 1-5 (where 5 is the most engaging), please rate how ENGAGING you found this HIT</b>:
+                </div>
+                <div class="col-md-4">
+                    <select id="engagement" name="engagement">
+                      <option value="0" id="SELECTED" SELECTED>Please make a selection</option>
+                        <option value="5">5 - Very engaging</option>
+                        <option value="4">4 - Moderately engaging</option>
+                        <option value="3">3 - Neither nor</option>
+                        <option value="2">2 - Moderately boring</option>
+                        <option value="1">1 - Very boring</option>
+                    </select>
+                </div>
+            </div>
+            <!-- end of a question -->
+
+            <!-- beginning of a question -->
+            <div class="row question">
+                <div class="col-md-8">
+                  <b>On a scale of 1-5 (where 5 is the most difficult), please rate how DIFFICULT you found this HIT</b>:
+                </div>
+                <div class="col-md-4">
+                    <select id="difficulty" name="difficulty">
+                      <option value="0" id="SELECTED" SELECTED>Please make a selection</option>
+                        <option value="5">5 - Very difficult</option>
+                        <option value="4">4 - Moderately difficult</option>
+                        <option value="3">3 - Neither nor</option>
+                        <option value="2">2 - Moderately easy</option>
+                        <option value="1">1 - Very easy</option>
+                    </select>
+                </div>
+            </div>
+            <!-- end of a question -->
+
+            <form>
+              <div class="form-group">
+            <label for="exampleFormControlTextarea1">Please enter comments regarding the experiment below (Optional):</label>
+            <textarea id="comment" name="comment" class="form-control" rows="3" placeholder="Enter comments here" style="text-transform:uppercase" ></textarea>
+        	</div>
+
+            </form>
+
+        </form>
+    </div>
+
+    <hr />
+
+    <div class="instructionsnav">
+        <div class="row">
+            <div class="col-xs-2">
+            </div>
+            <div class="col-xs-7">
+            </div>
+            <div class="col-xs-3">
+                <button type="button" id="next" value="next" class="btn btn-primary btn-lg continue">
+                    Continue <span class="glyphicon glyphicon-arrow-right"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+</div>

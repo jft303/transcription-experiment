@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<!--
+  The consent.html displays the text of your IRB-approved
+  consent form.  Even if you are not required to provide
+  a consent form, it is helpful to use this form to
+  describe what people can do if an error comes up, etc...
+
+-->
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Transcription - Informed Consent Form</title>
+        <link rel="stylesheet" href="/static/css/bootstrap.min.css" type="text/css" />
+        <link rel="stylesheet" href="/static/css/style.css" type="text/css" />
+        <script type="text/javascript">
+            function onexit() {
+              self.close(); // no harm, no foul here
+            }
+        </script>
+    </head>
+    <body>
+        <div id="container-consent">
+            <div id="consent">
+                <h1>We need your consent to proceed</h1>
+                <hr />
+                <div class="legal well">
+                  <p> This Human Intelligence Task (HIT) is part of a research project by the University of Copenhagen.</p>
+                  <p> This Transcription Task is made up of 4 paragraphs, with every paragraph consisting of 336 characters. You will be asked to confirm current bonus payments, make a typewritten copy of given texts and finally complete a short follow-up survey of 10 questions.
+									This task will pay a basepay of $0.01, bonus payments ranging from $0.05 to $0.15 for every written paragraph and a $0.15 bonus for completing the short follow-up survey.
+                  This task will take approximately 15 minutes to complete.
+									</p>
+                  <p>You will only receive payment after <u>successfully submitting this HIT to Amazon Mechanical Turk!</u> Please be aware that by quitting the experiment (e.g. closing the browser window) you will loose your claim for any payment!</p>
+                    <p>
+                    All user specific information will be anonymized. No personal information will be stored.
+                    You can only complete this HIT once. For further questions please contact us: <a href="mailto:ucph.mturk@gmail.com">ucph.mturk@gmail.com</a>
+                    </p>
+
+                    <ul>
+                      <li> You are at least 18 years old. </li>
+                      <li> You are fluent in English. </li>
+                      <li> You agree to the terms above </li>
+                    </ul>
+
+                    <button type="button" class="btn btn-default btn-sm" onClick="window.print();">
+                    <span class="glyphicon glyphicon-print"></span> Print a copy of this
+                    </button>
+                </div>
+
+                <hr />
+                <h4>Do you understand and consent to these terms?</h4>
+                <br />
+
+                <center>
+                    <button type="button" class="btn btn-primary btn-lg" onClick="window.location='/exp?hitId={{ hitid }}&assignmentId={{ assignmentid }}&workerId={{ workerid }}'">
+                    <span class="glyphicon glyphicon-ok"></span> I agree
+                    </button>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <button type="button" class="btn btn-danger btn-lg" onClick="onexit()">
+                    <span class="glyphicon glyphicon-ban-circle"></span> No thanks, I do not want to do this HIT
+                    </button>
+                </center>
+
+            </div>
+        </div>
+    </body>
+</html>
