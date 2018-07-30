@@ -53,12 +53,6 @@ var run = 0;
 var score = 2*initial_treatment + 2*treatment;
 var round_score = (Math.floor(100* score))/100;
 
-// console.log('true score: '+score);
-// console.log('round score: '+round_score);
-// console.log('treatment: '+treatment);
-
-
-
 
 var TranscriptionExperiment = function() {
 
@@ -72,14 +66,11 @@ var TranscriptionExperiment = function() {
 			["/static/images/22.jpeg", String("marginale productiviteit van kapitaal, dat wil zeggen, de extra output als gevolg van het toevoegen van een nieuwe kapitaaleenheid aan de rand, is zeer laag), kan het collectief efficient zijn om een deel van de binnenlandse besparingen in armere landen in het buitenland te investeren Deze optimistische theorie heeft echter twee grote"), 2],
 			["/static/images/23.jpeg", String("Betekortkomingen. Ten eerste garandeert het vereveningsmechanisme vanuit strikt logisch oogpunt geen wereldwijde convergentie van het inkomen per hoofd van de bevolking. In het beste geval kan dit tot convergentie van de output per hoofd van de bevolking leiden, op voorwaarde dat we uitgaan van een perfecte kapitaalmobiliteit en, nog"), 3],
 			["/static/images/24.jpeg", String("Belangrijker, totale gelijkheid van competentieniveaus en menselijk kapitaal in de verschillende landen - geen kleine veronderstelling. In elk geval impliceert de mogelijke convergentie van de output per hoofd niet de convergentie van het inkomen per hoofd. Er kan dus geen reden zijn waarom iemand zou reageren op een verandering in beloning."), 4]
-			//["/static/images/25.jpeg", "Nadat de rijke landen hebben geinvesteerd in hun armere buren, kunnen ze hen voor onbepaalde tijd blijven bezitten, en hun aandeel in eigendom kan zelfs tot enorme proporties groeien, zodat het nationale inkomen per hoofd van de rijke landen permanent groter blijft dan dat van de armere landen. landen, die aan buitenlanders een substantieel", 5],
-			//["/static/images/26.jpeg", "Bovendien, als we naar het historisch record kijken, lijkt het er niet op dat kapitaalmobiliteit de belangrijkste factor is geweest voor het bevorderen van de convergentie van rijke en arme landen. Geen van de Aziatische landen die de laatste jaren dichter bij de ontwikkelde landen van het Westen zijn gekomen, heeft geprofiteerd van grote buitenlandse", 6],
-			//["/static/images/27.jpeg", "Een deel van de reden voor die instabiliteit kan de volgende zijn. Wanneer een land grotendeels in handen is van buitenlanders, is er een terugkerende en bijna onstuitbare maatschappelijke vraag naar onteigening. Andere politieke actoren antwoorden dat investering en ontwikkeling alleen mogelijk zijn als bestaande eigendomsrechten deel van hun", 7]
 	];
 
-	//stims = _.shuffle(stims);
 	total_runs = stims.length;
 
+//The next function is called when workers press continue on the task interface. After the second stim, random assignment to a pay condition. Pressing continue removes the old stim and presents the next one sequentially. A progress bar interacts with function run.
 	var next = function() {
 		run = run + 1;
 		if(run < 3){
@@ -92,7 +83,7 @@ var TranscriptionExperiment = function() {
 		}
 		else {
 			stim = stims.shift();
-			show_img( stim[0] ); 
+			show_img( stim[0] );
 			time = new Date().getTime();
 			listening = true;
 			d3.select("#query").html('<p id="prompt">For this task you get $ ' + String(treat) + '</p>');
@@ -102,6 +93,7 @@ var TranscriptionExperiment = function() {
 		}
 	};
 
+//The function bonus lock ensures that workers have entered correct payment. This step should ensure salient payment.
 	var bonus_unlock = function(){
 
 			$("#bonus").prop('readonly', false);
@@ -109,6 +101,7 @@ var TranscriptionExperiment = function() {
 
 	}
 
+	//The start write lock ensures that workers can only proceed with transcription if correct payment has been entered. This step should ensure salient payment.
 	var start_write = function() {
 
 		bonus = $("#bonus").val();
@@ -124,11 +117,10 @@ var TranscriptionExperiment = function() {
 		}
 	};
 
+// The submit handler function takes care of recording the relevant task data to the task.db file. It is called after workers press submit.
 	var submit_handler = function() {
 
-		// if (!listening) return;
 		var response = $("#textbox").val();
-		// var bonus = $("#bonus").val();  //maximal 3 character
 		var stimuli = String(stim[1]);
 		var text_nr = String(stim[2]);
 		var stimuli_length = String(stim[1].length);
@@ -136,9 +128,7 @@ var TranscriptionExperiment = function() {
 
 		var levenshteinScore = levenshtein(stimuli, response);
 
-		// console.log(levenshteinScore);
 
-		//NEW: bonus==treat && quality
 		if ((response.length!=0) && (levenshteinScore < 320)) {
 			listening = false;
 			var rt = new Date().getTime() - time;
@@ -173,6 +163,7 @@ var TranscriptionExperiment = function() {
 
 	};
 
+// The levenshtein function calculates the error distance from workers responses and is added through the submit_handler to the task.db file. The algorithm is obtained from: https://gist.github.com/andrei-m/982927
 	var levenshtein = function (eins, zwei) {
 	    if (eins === zwei) {
 	        return 0;
@@ -267,8 +258,8 @@ var TranscriptionExperiment = function() {
 	    return h;
 	};
 
+//Once finish is called, the submit handler is activated and workers are brought to the Questionaire.
 	var finish = function() {
-			// console.log('FINISH')
 
 		  $("#submit").unbind("click", submit_handler); // Unbind click
 	    currentview = new Questionnaire();
@@ -302,7 +293,6 @@ var TranscriptionExperiment = function() {
 	// Register the response handler that is defined above to handle any
 	// click events.
 	$("#submit").click(submit_handler);
-	//$("#confirm").click(bonus);
 	$("#confirm").click(start_write);
 
 
@@ -316,9 +306,9 @@ var TranscriptionExperiment = function() {
 
 
 var Questionnaire = function() {
- // console.log('new questionaire');
 	var error_message = "<h1>Oops!</h1><p>Something went wrong submitting your HIT. soll might happen if you lose your internet connection. Press the button to resubmit.</p><button id='resubmit'>Resubmit</button>";
 
+//The question check function defines the bonus payment received from completing the survey and adds the respective bonus to task.db through submit handler.
 	 question_check = function() {
 		 var count = 0;
 		$('select').each ( function(i, val){
@@ -351,10 +341,7 @@ var Questionnaire = function() {
 
 		}
 
-
-
-
-
+//Responses are stored in JSON object
 	record_responses = function() {
 
 		question_check();
@@ -417,7 +404,7 @@ var currentview;
  ******************/
 $(window).load( function(){
     psiTurk.doInstructions(
-    	instructionPages, // a list of pages you want to display in sequence
+    	instructionPages, // The list of instruction pages
     	function() { currentview = new TranscriptionExperiment(); } // what you want to do when you are done with instructions
     );
 });
